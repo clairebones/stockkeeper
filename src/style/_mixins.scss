@@ -1,0 +1,134 @@
+
+@mixin bp($point) {
+    // 361 -> 767
+    @if $point == mobile-large {
+        @media (min-width: map-get($bps, mobileUp)) { @content; }
+    }
+    @else if $point == two-col {
+        @media (min-width: map-get($bps, twoCol)) { @content; }
+    }
+    @else if $point == mob-max {
+        @media (max-width: 500px) { @content; }
+    }
+    @else if $point == tab-max {
+        @media (max-width: 767px) { @content; }
+    }
+    // 768 -> 1072
+    @else if $point == tab-up {
+        @media (min-width: map-get($bps, tabletUp)) { @content; }
+    }
+    // 1072up
+    @else if $point == dt-up {
+        @media (min-width: map-get($bps, desktopUp)) { @content; }
+    }
+    @else if $point == max-out {
+        @media (min-width: map-get($bps, designMax)) { @content; }
+    }
+}
+
+@mixin font-face($fontFamily, $fontFile) {
+    @font-face {
+        font-family: $fontFamily;
+        src: url('#{$fontPath}/#{$fontFile}.eot');
+        src: url('#{$fontPath}/#{$fontFile}.eot?#iefix') format('embedded-opentype'),
+             url('#{$fontPath}/#{$fontFile}.woff') format('woff'),
+             url('#{$fontPath}/#{$fontFile}.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+}
+
+
+////
+// iOS Viewport Height Fix.
+////
+
+// Variables that exist merely so you can reference them in your `@content` code.
+$ios-height: 0;
+$ios-width: 0;
+
+// Map of sub-maps representing various iOS devices on the market.
+$ios-media: (
+    // iPads in landscape
+    (
+        query-string: 'only screen and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape)',
+        width: 1024px,
+        height: 768px
+    ),
+    // iPads in portrait
+    (
+        query-string: 'only screen and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait)',
+        width: 768px,
+        height: 1024px
+    ),
+    // iPhone 6 in landscape
+    (
+        query-string: 'only screen and (device-width: 375px) and (device-height: 667px) and (orientation: landscape)',
+        width: 667px,
+        height: 375px
+    ),
+    // iPhone 6 in portrait
+    (
+        query-string: 'only screen and (device-width: 375px) and (device-height: 667px) and (orientation: portrait)',
+        width: 375px,
+        height: 667px
+    ),
+    // iPhone 6 Plus in landscape
+    (
+        query-string: 'only screen and (device-width: 414px) and (device-height: 736px) and (orientation: landscape)',
+        width: 736px,
+        height: 414px
+    ),
+    // iPhone 6 Plus in portrait
+    (
+        query-string: 'only screen and (device-width: 414px) and (device-height: 736px) and (orientation: portrait)',
+        width: 414px,
+        height: 736px
+    ),
+    // iPhone 5 & 5S in landscape
+    (
+        query-string: 'only screen and (device-width: 320px) and (device-height: 568px) and (orientation: landscape)',
+        width: 568px,
+        height: 320px
+    ),
+    // iPhone 5 & 5S in portrait
+    (
+        query-string: 'only screen and (device-width: 320px) and (device-height: 568px) and (orientation: portrait)',
+        width: 320px,
+        height: 568px
+    ),
+    // iPhone 2G-4S in landscape
+    (
+        query-string: 'only screen and (device-width: 320px) and (device-height: 480px) and (orientation: landscape)',
+        width: 480px,
+        height: 320px
+    ),
+    // iPhone 2G-4S in portrait
+    (
+        query-string: 'only screen and (device-width: 320px) and (device-height: 480px) and (orientation: portrait)',
+        width: 320px,
+        height: 480px
+    )
+);
+
+// Outputs your code block nested inside various iOS media queries.
+// The code-block has access to the width / height variables so that
+// viewport units can be calculated in fixed pixels.
+//
+// Example:
+// .test {
+//     height: 55vh
+//     @include ios-media() {
+//         height: $ios-height * 0.55;
+//     }
+// }
+@mixin ios-media() {
+    @each $medium in $ios-media {
+        $ios-height: map-get($medium, 'height') !global;
+        $ios-width: map-get($medium, 'width') !global;
+
+        @media #{map-get($medium, 'query-string')} {
+            @content;
+        }
+    }
+}

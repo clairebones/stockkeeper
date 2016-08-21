@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,minimal-ui,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    
+        <meta name="theme-color" content="#663854"/>
+        <link rel="icon" async type="image/png" href="build/assets/img/favicon.png"/>
+        <meta name="description" content=" Claire Wilgar - Personal portfolio and information page" />
+
+        <title>ShopKeep - Stock Keeper</title>
+
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Dosis:300,400,500,600, 700|Material+Icons">
+
+        <link href="build/css/index.css" media="screen" rel="stylesheet" /> 
+    </head>
+    <body>
+        <h1 class="title">ShopKeep - Stock Keeper</h1>
+        
+        <section ng-app="ListApp">
+          <div class="header">
+            <div class="container">
+              <h1> Stock List</h1>
+            </div>
+          </div>
+
+          <div class="main" ng-controller="ListController as list">
+            <div class="container">
+                <div class="row search">
+                    <h3>Search: <input class="form-row" ng-model="searchText.name"></h3>
+               </div>
+                <div class="row contact" ng-repeat="item in list.items | filter:searchText">
+                    <span class="label">Title:</span> {{item.title}}<br>
+                    <span class="label">Description:</span> {{item.description}}<br>
+                    <span class="label">Price:</span> {{item.price | currency}}<br>
+                    <span class="label">Available:</span> {{item.available | date}}<br>
+                    <span class="label">Taxable:</span> {{item.taxable}}<br>
+                </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Ideally would have stored versions of these in a third party libs folder -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-messages.min.js"></script>
+        
+        <script src="build/scripts/main.min.js"></script>
+    </body>
+</html>

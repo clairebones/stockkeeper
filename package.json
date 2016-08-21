@@ -1,0 +1,31 @@
+{
+    "name": "stockkeeper",
+    "version": "0.1.0",
+    "description": "Stock tracking app",
+    "main": "src/scripts/index.js",
+    "scripts": {
+        "autoprefixer": "postcss -u autoprefixer -b 'last 2 versions' -r build/css/*",
+        "imagemin": "imagemin --plugin=pngquant assets/img/* --out-dir=build/assets/img/",
+        "styles": "node-sass src/style --output=build/css/ --output-style=compressed && npm run autoprefixer",
+        "scripts": "webpack",
+        "build": "npm run imagemin && npm run styles && npm run scripts",
+        "watch": "nodemon -e scss --watch src/style -x \"npm run styles\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/clairebones/clairebones.github.io"
+    },
+    "author": "clairebones",
+    "license": "MIT",
+    "devDependencies": {
+        "autoprefixer": "^6.3.7",
+        "imagemin-cli": "^3.0.0",
+        "imagemin-pngquant": "^5.0.0",
+        "node-sass": "^3.8.0",
+        "nodemon": "^1.9.2",
+        "postcss-cli": "^2.5.2",
+        "uglify-js": "^2.7.0",
+        "webpack": "^1.13.1",
+        "ng-annotate-loader": "^0.1.1"
+    }
+}
