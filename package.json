@@ -9,7 +9,8 @@
         "styles": "node-sass src/style --output=build/css/ --output-style=compressed && npm run autoprefixer",
         "scripts": "webpack",
         "build": "npm run imagemin && npm run styles && npm run scripts",
-        "watch": "nodemon -e scss --watch src/style -x \"npm run styles\""
+        "watch": "nodemon -e scss --watch src/style -x \"npm run styles\"",
+        "serve": "webpack-dev-server"
     },
     "repository": {
         "type": "git",
@@ -26,6 +27,7 @@
         "postcss-cli": "^2.5.2",
         "uglify-js": "^2.7.0",
         "webpack": "^1.13.1",
-        "ng-annotate-loader": "^0.1.1"
+        "ng-annotate-loader": "^0.1.1",
+        "webpack-dev-server": "^1.14.1"
     }
 }
