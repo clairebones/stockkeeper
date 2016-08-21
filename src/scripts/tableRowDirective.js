@@ -3,7 +3,7 @@
  *
  * @author Claire Wilgar <cwilgar@gmail.com>
  */
-'use strict';
+
 /**
  * Module export of directive function
  * Directive is an element which renders a row of data into a table
@@ -17,7 +17,7 @@ module.exports = function() {
         restrict: 'A',
         scope: '@item',
         template: require('../templates/rowTemplate.html'),
-        link: function(scope, elem, attrs, ctrl) {
+        link: function(scope) {
             console.log('row', scope.item);
         }
     };

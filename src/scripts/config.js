@@ -10,8 +10,6 @@
  * @author Claire Wilgar
  */
 
-'use strict';
-
 /**
  * Angular config function
  *

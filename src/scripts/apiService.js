@@ -3,13 +3,15 @@
  *
  * @author Claire Wilgar <claire.wilgar@rehabstudio.com>
  */
-'use strict';
 
 /**
  * Basic constructor function
  *
  * @ngInject
  * @constructor
+ * @param  {angular.Service} $http                  angular http service
+ * @param  {angular.Service} $q                     angular promise library
+ * @param  {angular.Service} $httpParamSerializer   angular parameter serialization service
  */
 var apiService = function($http, $q, $httpParamSerializer) {
     this.$http = $http;
@@ -26,20 +28,20 @@ apiService.prototype.submitForm = function(data) {
     var defer = this.$q.defer();
 
     this.$http({
-        url: 'https://services.google.com/fb/submissions/039324abe17a11e5b860b33297739e96/',
+        url: '',
         method: 'POST',
         data: this.$httpParamSerializer(data),
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     }).success(function(response) {
-        if(angular.equals(response.result, 'accepted')) {
-                defer.resolve(response);
+        if (angular.equals(response.result, 'accepted')) {
+            defer.resolve(response);
         } else {
-                defer.reject(response);
-        }  
+            defer.reject(response);
+        }
     }).error(defer.reject);
-    
+
     return defer.promise;
 
 };
@@ -49,7 +51,7 @@ apiService.prototype.getItems = function() {
 
     this.$http({
         url: 'https://dl.dropboxusercontent.com/u/21064600/data.json',
-        method: 'GET',
+        method: 'GET'
 //        headers: {
 //            'Content-Type': 'application/x-www-form-urlencoded'
 //        }
@@ -57,7 +59,7 @@ apiService.prototype.getItems = function() {
         console.log(response);
         defer.resolve(response);
     }).error(defer.reject);
-    
+
     return defer.promise;
 };
 

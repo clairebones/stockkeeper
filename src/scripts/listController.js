@@ -10,7 +10,6 @@
  *
  * @authors Claire Wilgar <claire.wilgar@rehabstudio.com>
  */
-'use strict';
 
 /**
  * Module export of directive function
@@ -20,18 +19,18 @@
  * @return {angular.Directive}                   Directive definition object
  */
 
-module.exports = function($scope, ApiService){
+module.exports = function($scope, ApiService) {
 //    contacts.success(function(data) {
 //        $scope.items = data.products;
 //    });
     this.items = [];
     this.sortBy = '';
     this.reverseSort = false;
-    this.error = "";
+    this.error = '';
     var self = this;
-    
+
     console.log('controller loaded');
-    
+
     ApiService.getItems()
         .then(function(data) {
             self.items = data.products;

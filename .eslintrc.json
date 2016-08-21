@@ -13,7 +13,8 @@
   "globals": {
       "console": false,
       "inject": false,
-      "Modernizr": false
+      "Modernizr": false,
+      "angular": false
   },
   "parserOptions": {
     "ecmaVersion": 6,
