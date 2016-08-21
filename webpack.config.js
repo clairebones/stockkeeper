@@ -20,6 +20,10 @@ module.exports = {
     ],
     module: {
         loaders: [
+            { 
+                test: /\.html$/,
+                loader: 'html' 
+            },
             {
                 test: /\.js$/,
                 loader: 'ng-annotate',
