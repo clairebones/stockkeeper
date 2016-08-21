@@ -8,6 +8,7 @@
 
 html {
     height: 100%;
+    font-size: 10px;
 }
 
 body {
@@ -16,6 +17,7 @@ body {
     min-height: 100%;
     font-family: 'Dosis', Arial, sans-serif;
     margin: 0;
+    font-size: 1.6rem;
 }
 
 svg {
@@ -32,5 +34,37 @@ li {
 }
 
 .title {
+    background-color: map-get($color, dark-feature);
+    color: white;
     font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 8rem;
+}
+
+.item-table {
+    
+    border-collapse: collapse;
+    
+    .table-heading {
+        border-bottom: 2px solid map-get($color, dark-feature);
+        
+        th {
+            padding: 1rem;
+        }
+    }
+    
+    .table-row {
+        border-bottom: 1px solid map-get($color, med);
+        
+        &:hover {
+            background-color: map-get($color, white);
+        }
+        
+        td {
+            padding: 0.6rem 1rem;
+        }   
+    }
 }

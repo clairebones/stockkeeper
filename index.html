@@ -11,31 +11,34 @@
         <title>ShopKeep - Stock Keeper</title>
 
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Dosis:300,400,500,600, 700|Material+Icons">
-
-        <link href="build/css/index.css" media="screen" rel="stylesheet" /> 
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.0/angular-material.min.css">
+        <link rel="stylesheet" type="text/css" href="build/css/index.css" media="screen"/> 
     </head>
     <body>
         <h1 class="title">ShopKeep - Stock Keeper</h1>
         
         <section ng-app="ListApp">
-          <div class="header">
-            <div class="container">
-              <h1> Stock List</h1>
-            </div>
-          </div>
 
           <div class="main" ng-controller="ListController as list">
             <div class="container">
-                <div class="row search">
-                    <h3>Search: <input class="form-row" ng-model="searchText.name"></h3>
+                <div class="search-container">
+<!--                    <h3>Search: <md-input class="search-input" ng-model="list.searchText"></h3>-->
+                    <md-input-container flex class="md-accent">
+                        <label>Search</label>
+                        <input type="text" ng-model="list.searchText"></input>
+                    </md-input-container>
                </div>
-                <div class="row contact" ng-repeat="item in list.items | filter:searchText">
-                    <span class="label">Title:</span> {{item.title}}<br>
-                    <span class="label">Description:</span> {{item.description}}<br>
-                    <span class="label">Price:</span> {{item.price | currency}}<br>
-                    <span class="label">Available:</span> {{item.available | date}}<br>
-                    <span class="label">Taxable:</span> {{item.taxable}}<br>
-                </div>
+                <table class="item-table">
+                    <tr class="table-heading">
+                        <th><a ng-click="list.sortBy = 'title'; list.reverseSort = !list.reverseSort">Title</a></th>
+                        <th><a ng-click="list.sortBy = 'description'; list.reverseSort = !list.reverseSort">Description</a></th>
+                        <th><a ng-click="list.sortBy = 'price'; list.reverseSort = !list.reverseSort">Price</a></th>
+                        <th><a ng-click="list.sortBy = 'available'; list.reverseSort = !list.reverseSort">Available</a></th>
+                        <th><a ng-click="list.sortBy = 'taxable'; list.reverseSort = !list.reverseSort">Taxable</a></th>
+                    </tr>
+                    <tr class="table-row" table-row-directive
+                        ng-repeat="item in list.items | filter:list.searchText | orderBy:list.sortBy:list.reverseSort"></tr>
+                </table>
             </div>
           </div>
         </section>
@@ -45,6 +48,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-aria.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-animate.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-messages.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.0/angular-material.min.js"></script>
         
         <script src="build/scripts/main.min.js"></script>
     </body>

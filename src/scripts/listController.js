@@ -25,6 +25,8 @@ module.exports = function($scope, ApiService){
 //        $scope.items = data.products;
 //    });
     this.items = [];
+    this.sortBy = '';
+    this.reverseSort = false;
     this.error = "";
     var self = this;
     
