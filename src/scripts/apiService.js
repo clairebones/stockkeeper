@@ -1,5 +1,7 @@
 /**
  * Form API service - posts the contact form and returns status and data
+ * Currently the GET request works but the POST requests that would be used
+ * are replaced with simple promises as there is no server currently set up.
  *
  * @author Claire Wilgar <claire.wilgar@rehabstudio.com>
  */
@@ -26,53 +28,63 @@ var apiService = function($http, $q, $httpParamSerializer) {
 */
 apiService.prototype.submitForm = function(data) {
     var defer = this.$q.defer();
-//
-//    this.$http({
-//        url: '',
-//        method: 'POST',
-//        data: this.$httpParamSerializer(data),
-//        headers: {
-//            'Content-Type': 'application/x-www-form-urlencoded'
-//        }
-//    }).success(function(response) {
-//        if (angular.equals(response.result, 'accepted')) {
-            defer.resolve(data);
-    console.log('resolved', data);
-//        } else {
-//            defer.reject(response);
-//        }
-//    }).error(defer.reject);
-//
+
+    var postSuccess = true; //fake success indicator, would be sent from server
+    var response = ''; //fake response in case of error, would be sent from server
+
+    /*send API POST request here*/
+
+    if (postSuccess) {
+        /* if the post is successful: */
+        /* resolve the promise and confirm the data
+        /* by sending it back */
+        defer.resolve(data);
+    } else {
+        /* if the post was not successful: */
+        /* reject the promise and send an error message */
+        defer.reject(response);
+    }
+    /* if not successful */
     return defer.promise;
 
 };
 
+/**
+* Function to post the form data of a delete request and return a promise based on success or fail/bad data
+* @param {object} data - form data
+* @return {object} or {promise}
+*/
 apiService.prototype.deleteItem = function(data) {
     var defer = this.$q.defer();
-//
-//    this.$http({
-//        url: '',
-//        method: 'POST',
-//        data: this.$httpParamSerializer(data),
-//        headers: {
-//            'Content-Type': 'application/x-www-form-urlencoded'
-//        }
-//    }).success(function(response) {
-//        if (angular.equals(response.result, 'accepted')) {
-            defer.resolve(data);
-    console.log('resolved', data);
-//        } else {
-//            defer.reject(response);
-//        }
-//    }).error(defer.reject);
-//
-    return defer.promise;
 
+    var postSuccess = true; //fake success indicator, would be sent from server
+    var response = ''; //fake response in case of error, would be sent from server
+
+    /*send API POST request here*/
+
+    if (postSuccess) {
+        /* if the post is successful: */
+        /* resolve the promise and confirm the data
+        /* by sending it back */
+        defer.resolve(data);
+    } else {
+        /* if the post was not successful: */
+        /* reject the promise and send an error message */
+        defer.reject(response);
+    }
+    /* if not successful */
+    return defer.promise;
 };
 
+/**
+* Function to get the stock data and return a promise based on success or fail
+* @param {object} data - form data
+* @return {object} or {promise}
+*/
 apiService.prototype.getItems = function() {
     var defer = this.$q.defer();
 
+    /* Currently get data from stored JSON file as no server is set up */
     this.$http({
         url: 'https://dl.dropboxusercontent.com/u/21064600/data.json',
         method: 'GET'
