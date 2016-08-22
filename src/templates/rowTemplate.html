@@ -1,5 +1,9 @@
-<td>{{item.title}}</td>
-<td>{{item.description}}</td>
-<td>{{item.price}}</td>
-<td>{{item.available}}</td>
-<td>{{item.taxable}}</td>
+<td class="shrink">{[item.title]}</td>
+<td class="desktop-only">{[item.description]}</td>
+<td class="shrink">{[item.price | currency]}</td>
+<td class="shrink">{[item.available | date]}</td>
+<td class="shrink">{[item.taxable]}</td>
+<td class="shrink">
+    <md-button class="md-raised md-primary" ng-click="list.editStockItem($event, item)">Edit</md-button>
+    <md-button class="md-raised md-accent" ng-click="list.deleteStockItem($event, item)">Delete</md-button>
+</td>

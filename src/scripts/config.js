@@ -25,8 +25,8 @@
 module.exports = function($interpolateProvider, $mdThemingProvider) {
 
     // Configure interpolation braces
-//    $interpolateProvider.startSymbol('{[');
-//    $interpolateProvider.endSymbol(']}');
+    $interpolateProvider.startSymbol('{[');
+    $interpolateProvider.endSymbol(']}');
 
     var primary = $mdThemingProvider.extendPalette('purple', {
         '500': '663854', // Default

@@ -26,22 +26,46 @@ var apiService = function($http, $q, $httpParamSerializer) {
 */
 apiService.prototype.submitForm = function(data) {
     var defer = this.$q.defer();
+//
+//    this.$http({
+//        url: '',
+//        method: 'POST',
+//        data: this.$httpParamSerializer(data),
+//        headers: {
+//            'Content-Type': 'application/x-www-form-urlencoded'
+//        }
+//    }).success(function(response) {
+//        if (angular.equals(response.result, 'accepted')) {
+            defer.resolve(data);
+    console.log('resolved', data);
+//        } else {
+//            defer.reject(response);
+//        }
+//    }).error(defer.reject);
+//
+    return defer.promise;
 
-    this.$http({
-        url: '',
-        method: 'POST',
-        data: this.$httpParamSerializer(data),
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-    }).success(function(response) {
-        if (angular.equals(response.result, 'accepted')) {
-            defer.resolve(response);
-        } else {
-            defer.reject(response);
-        }
-    }).error(defer.reject);
+};
 
+apiService.prototype.deleteItem = function(data) {
+    var defer = this.$q.defer();
+//
+//    this.$http({
+//        url: '',
+//        method: 'POST',
+//        data: this.$httpParamSerializer(data),
+//        headers: {
+//            'Content-Type': 'application/x-www-form-urlencoded'
+//        }
+//    }).success(function(response) {
+//        if (angular.equals(response.result, 'accepted')) {
+            defer.resolve(data);
+    console.log('resolved', data);
+//        } else {
+//            defer.reject(response);
+//        }
+//    }).error(defer.reject);
+//
     return defer.promise;
 
 };
@@ -52,9 +76,6 @@ apiService.prototype.getItems = function() {
     this.$http({
         url: 'https://dl.dropboxusercontent.com/u/21064600/data.json',
         method: 'GET'
-//        headers: {
-//            'Content-Type': 'application/x-www-form-urlencoded'
-//        }
     }).success(function(response) {
         console.log(response);
         defer.resolve(response);

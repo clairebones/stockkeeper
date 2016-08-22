@@ -29,10 +29,6 @@ svg {
     pointer-events: none;
 }
 
-li {
-    padding: 0.3rem 0;
-}
-
 .title {
     background-color: map-get($color, dark-feature);
     color: white;
@@ -44,15 +40,28 @@ li {
     height: 8rem;
 }
 
+.list-app {
+    margin: 3rem;
+}
+
 .item-table {
     
     border-collapse: collapse;
+    width: 100%;
     
     .table-heading {
         border-bottom: 2px solid map-get($color, dark-feature);
         
         th {
             padding: 1rem;
+            &.desktop-only {
+                display: none;
+                
+                @include bp(tab-up) {
+                    display: table-cell;
+                    width:99%
+                }
+            }
         }
     }
     
@@ -65,6 +74,38 @@ li {
         
         td {
             padding: 0.6rem 1rem;
+            
+            &.shrink {
+                @include bp(tab-up) {
+                    white-space: nowrap;
+                }
+            }
+            
+            &.desktop-only {
+                display: none;
+                
+                @include bp(tab-up) {
+                    display: table-cell;
+                    width:99%
+                }
+            }
         }   
     }
 }
+
+.add-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.stock-form-content {
+    .md-dialog-content {
+        display: flex;
+        flex-direction: column;
+        
+        @include bp(tab-up) {
+            min-width: 50rem;
+        }
+    }
+}
+

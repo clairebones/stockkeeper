@@ -1,0 +1,33 @@
+<md-dialog aria-label="Delete Item">
+    <form id="delete" name="delete" ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Delete Item</h2>
+                    <span flex></span>
+                <md-button class="md-icon-button" ng-click="del.cancel()">
+                    <span aria-label="Close dialog">x</span>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content class="delete-item-content">
+            <div class="md-dialog-content">
+                <h3>Are you sure you wish to delete the following item:</h3>
+                <p>Title: {[del.item.title]}</p>
+                <p>Description: {[del.item.description]}</p>
+                <p>Price: {[del.item.price | currency]}</p>
+                <p>Available: {[del.item.available | date]}</p>
+                <p>Taxable: {[del.item.taxable]}</p>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions class="dialog-buttons">
+            <md-button ng-click="del.deleteItem(del.item)">
+                Delete
+            </md-button>
+            <md-button ng-click="del.cancel()">
+                Cancel
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -17,30 +17,37 @@
     <body>
         <h1 class="title">ShopKeep - Stock Keeper</h1>
         
-        <section ng-app="ListApp">
+        <section ng-app="ListApp" class="app list-app">
 
-          <div class="main" ng-controller="ListController as list">
-            <div class="container">
-                <div class="search-container">
-<!--                    <h3>Search: <md-input class="search-input" ng-model="list.searchText"></h3>-->
-                    <md-input-container flex class="md-accent">
-                        <label>Search</label>
-                        <input type="text" ng-model="list.searchText"></input>
-                    </md-input-container>
-               </div>
-                <table class="item-table">
-                    <tr class="table-heading">
-                        <th><a ng-click="list.sortBy = 'title'; list.reverseSort = !list.reverseSort">Title</a></th>
-                        <th><a ng-click="list.sortBy = 'description'; list.reverseSort = !list.reverseSort">Description</a></th>
-                        <th><a ng-click="list.sortBy = 'price'; list.reverseSort = !list.reverseSort">Price</a></th>
-                        <th><a ng-click="list.sortBy = 'available'; list.reverseSort = !list.reverseSort">Available</a></th>
-                        <th><a ng-click="list.sortBy = 'taxable'; list.reverseSort = !list.reverseSort">Taxable</a></th>
-                    </tr>
-                    <tr class="table-row" table-row-directive
-                        ng-repeat="item in list.items | filter:list.searchText | orderBy:list.sortBy:list.reverseSort"></tr>
-                </table>
+            <div class="main" ng-controller="ListController as list">
+                <div class="container">
+                    <div class="search-container">
+                        <md-input-container flex class="md-accent">
+                            <label>Search</label>
+                            <input type="text" ng-model="list.searchText"></input>
+                        </md-input-container>
+                    </div>
+
+                    <table class="item-table">
+                        <tr class="table-heading">
+                            <th><a ng-click="list.sortBy = 'title'; list.reverseSort = !list.reverseSort">Title</a></th>
+                            <th class="desktop-only">
+                                <a ng-click="list.sortBy = 'description'; list.reverseSort = !list.reverseSort">Description</a>
+                            </th>
+                            <th><a ng-click="list.sortBy = 'price'; list.reverseSort = !list.reverseSort">Price</a></th>
+                            <th><a ng-click="list.sortBy = 'available'; list.reverseSort = !list.reverseSort">Available</a></th>
+                            <th><a ng-click="list.sortBy = 'taxable'; list.reverseSort = !list.reverseSort">Taxable</a></th>
+                            <th></th>
+                        </tr>
+                        <tr class="table-row" table-row-directive
+                            ng-repeat="item in list.items | filter:list.searchText | orderBy:list.sortBy:list.reverseSort"></tr>
+                    </table>
+
+                    <div class="add-container">
+                        <md-button class="md-raised md-primary add-button" ng-click="list.addStock($event)">Add Stock</md-button>
+                    </div>
+                </div>
             </div>
-          </div>
         </section>
         
         <!-- Ideally would have stored versions of these in a third party libs folder -->

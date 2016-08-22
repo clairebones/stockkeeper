@@ -1,0 +1,46 @@
+<md-dialog aria-label="Stock Details">
+    <form id="stockForm" name="stockForm" ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Stock Details</h2>
+                    <span flex></span>
+                <md-button class="md-icon-button" ng-click="form.cancel()">
+                    <span aria-label="Close dialog">x</span>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content class="stock-form-content">
+            <div class="md-dialog-content">
+                <md-input-container flex class="md-accent">
+                    <label>Title</label>
+                    <input type="text" ng-model="form.item.title" required></input>
+                </md-input-container>
+                <md-input-container flex class="md-accent">
+                    <label>Description</label>
+                    <textarea ng-model="form.item.description" rows="3" required></textarea>
+                </md-input-container>
+                <md-input-container flex class="md-accent">
+                    <label>Price (£)</label>
+                    <input type="number" ng-model="form.item.price" required></input>
+                </md-input-container>
+                <md-input-container flex class="md-accent">
+                    <label>Available</label>
+                    <md-datepicker type="date" ng-model="form.item.available" required></md-datepicker>
+                </md-input-container>
+                <md-input-container flex class="md-accent">
+                    <md-checkbox ng-model="form.item.taxable" aria-label="Taxable" value="false" required>Taxable*</md-checkbox>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions class="dialog-buttons">
+            <md-button ng-disabled="!stockForm.$valid" ng-click="form.submitForm(form.item)">
+                Submit
+            </md-button>
+            <md-button ng-click="form.cancel()">
+                Cancel
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
