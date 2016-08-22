@@ -7,7 +7,7 @@ This app is a basic stock keeping system, as built for a code test. It pulls dat
 ## To Build
 To build the project run `npm install` inside the project folder to pull all of the necessary packages, and then run `npm run build` from the command line in the same folder. This will build the scss files into css files and will combine and minify the JS into one bundled file. It also loads required html files as strings for use as templates inside the JS and minifies any images
 
-## To run
+## To Run
 To run the project run `npm run serve` in the command line and then visit the appropriate address (typically localhost:8080) to view the build.
 
 ## Assumptions/choices made
@@ -25,3 +25,7 @@ To run the project run `npm run serve` in the command line and then visit the ap
  - Unit tests would be written to check the actions and the rendering of the app
   
  -  Improved accessibility would be added to the system such as `aria-live` tags to announce when new rows are added to the table or existing items are updated or deleted
+ 
+ - While there is little static content in the build, some further progressive enhancement to prevent layout jumps would be a good improvement
+  
+ - With a server properly set up, a directive to display the server's exact error messages on the forms in cause of a failed post would be a benefit for troubleshooting
