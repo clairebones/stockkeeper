@@ -15,11 +15,13 @@
  */
 module.exports = function($scope, $mdDialog, ApiService, item) {
 
+    // Allow use of 'this' object inside inner functions and loops
     var self = this;
 
     self.item = item;
 
     if (!angular.isUndefined(self.item) && self.item != null) {
+        //if editing an existing item, format the date to allow the datepicker to show it
         console.log(self.item.available);
         self.item.available = new Date(self.item.available);
     }
@@ -33,6 +35,7 @@ module.exports = function($scope, $mdDialog, ApiService, item) {
     };
 
     self.submitForm = function(data) {
+        //if the form is submitted send the data to the server through the api service and manage the response
         ApiService.submitForm(data)
             .then(function() {
                 $mdDialog.hide(data);

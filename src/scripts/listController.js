@@ -1,18 +1,11 @@
-////app controller, puts data from the service into the scope for the view(html)
-//app.controller('MainController', ['$scope', 'contacts', function($scope, contacts) {
-//    contacts.success(function(data) {
-//        $scope.items = data.products;
-//    });
-//}]);
-
 /**
- * Form controller
+ * List controller
  *
- * @authors Claire Wilgar <claire.wilgar@rehabstudio.com>
+ * @authors Claire Wilgar <cwilgar@gmail.com>
  */
 
 /**
- * Module export of directive function
+ * Module export of controller function
  *
  * @ngInject
  * @param  {angular.Service} apiService service
@@ -20,17 +13,16 @@
  */
 
 module.exports = function($scope, ApiService, $mdDialog) {
-//    contacts.success(function(data) {
-//        $scope.items = data.products;
-//    });
+
+    //store item list, spt options and potential errors
     this.items = [];
     this.sortBy = '';
     this.reverseSort = false;
     this.error = '';
-    var self = this;
+    var self = this; //allows the 'this' object to be reached inside inner functions and loops
 
-    console.log('controller loaded');
-
+    //On load of the controller, call the API service to send a get request, and store the
+    // results as products or grab the error if failed
     ApiService.getItems()
         .then(function(data) {
             self.items = data.products;
@@ -38,6 +30,8 @@ module.exports = function($scope, ApiService, $mdDialog) {
             self.error = response;
         });
 
+    // When the user clicks the button to add stock, open a dialog box with it's own controller
+    // and template, and pass in null as no item is being edited
     self.addStock = function(event) {
         $mdDialog.show({
             controller: 'FormController as form',
@@ -50,12 +44,16 @@ module.exports = function($scope, ApiService, $mdDialog) {
             }
         })
         .then(function(data) {
+            //if the dialog is closed as 'hide' i.e. success, update the item array with the provided data
             self.items.push(data);
         }, function() {
+            //if the dialog is closed as 'cancel', log as such in the console and do nothing else
             console.log('Stock add cancelled');
         });
     };
 
+    // When the user clicks the button to edit stock, open a dialog box with it's own controller
+    // and template, and pass in the item from that row, to be edited
     self.editStockItem = function(event, item) {
         $mdDialog.show({
             controller: 'FormController as form',
@@ -67,9 +65,11 @@ module.exports = function($scope, ApiService, $mdDialog) {
                 item: item
             }
         })
+        //if the dialog is closed as 'hide' i.e. success, update the item array with the provided data
         .then(function(data) {
             self.items.push(data);
         }, function() {
+            //if the dialog is closed as 'cancel', log as such in the console and do nothing else
             console.log('Editing cancelled');
         });
     };
@@ -84,11 +84,13 @@ module.exports = function($scope, ApiService, $mdDialog) {
             locals: {
                 item: item
             }
+            //if the dialog is closed as 'hide' i.e. success, remove the specified item from the array
         }).then(function(item) {
             var index = self.items.indexOf(item);
 
             self.items.splice(index, 1);
         }, function() {
+            //if the dialog is closed as 'cancel', log as such in the console and do nothing else
             console.log('Delete cancelled');
         });
     };

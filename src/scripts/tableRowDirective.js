@@ -17,8 +17,9 @@ module.exports = function() {
         restrict: 'A',
         scope: '@item',
         template: require('../templates/rowTemplate.html'),
-        link: function(scope) {
-            console.log('row', scope.item);
+        link: function() {
+            //this directive has no functionality but to render the template,
+            //any functionality required would be added here
         }
     };
 };

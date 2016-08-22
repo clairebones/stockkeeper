@@ -15,10 +15,10 @@
  */
 module.exports = function($scope, $mdDialog, ApiService, item) {
 
+    // Allow use of 'this' object inside inner functions and loops
     var self = this;
 
     self.item = item;
-    console.log(item);
 
     self.hide = function() {
         $mdDialog.hide();
@@ -29,6 +29,8 @@ module.exports = function($scope, $mdDialog, ApiService, item) {
     };
 
     self.deleteItem = function(data) {
+        // If the delete button is clicked, send the delete POST request to the server using the API
+        // service and handle the response
         ApiService.deleteItem(data)
             .then(function() {
                 $mdDialog.hide(data);
