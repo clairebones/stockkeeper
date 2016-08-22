@@ -6,11 +6,12 @@
     
         <meta name="theme-color" content="#663854"/>
         <link rel="icon" async type="image/png" href="build/assets/img/favicon.png"/>
-        <meta name="description" content=" Claire Wilgar - Personal portfolio and information page" />
+        <meta name="description" content="StockKeeper - Basic stock keeping app for shopkeep tech test" />
 
         <title>ShopKeep - Stock Keeper</title>
 
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Dosis:300,400,500,600, 700|Material+Icons">
+        <!-- Would vendor the angular material css in a third party libs folder ideally -->
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700|Material+Icons">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.0/angular-material.min.css">
         <link rel="stylesheet" type="text/css" href="build/css/index.css" media="screen"/> 
     </head>
@@ -22,6 +23,8 @@
             <div class="main" ng-controller="ListController as list">
                 <div class="container">
                     <div class="search-container">
+                        <!-- Container to hold the search bar -->
+                        <!-- Item list is filtered based on input to the search field using basic angular list filtering -->
                         <md-input-container flex class="md-accent">
                             <label>Search</label>
                             <input type="text" ng-model="list.searchText"></input>
@@ -30,6 +33,9 @@
 
                     <table class="item-table">
                         <tr class="table-heading">
+                            <!-- headings for each column of the table. Clicking on a heading sorts by that property. 
+                                Clicking on any property reverses the order -->
+                            <!-- TODO: Only reverse the sort if clicking on the property that is already being sorted -->
                             <th><a ng-click="list.sortBy = 'title'; list.reverseSort = !list.reverseSort">Title</a></th>
                             <th class="desktop-only">
                                 <a ng-click="list.sortBy = 'description'; list.reverseSort = !list.reverseSort">Description</a>
@@ -39,11 +45,13 @@
                             <th><a ng-click="list.sortBy = 'taxable'; list.reverseSort = !list.reverseSort">Taxable</a></th>
                             <th></th>
                         </tr>
+                        <!-- table row directive which repeats for each item in the list provided from the server -->
                         <tr class="table-row" table-row-directive
                             ng-repeat="item in list.items | filter:list.searchText | orderBy:list.sortBy:list.reverseSort"></tr>
                     </table>
 
                     <div class="add-container">
+                        <!-- Container hosts button which calls dialog for adding new stock items -->|
                         <md-button class="md-raised md-primary add-button" ng-click="list.addStock($event)">Add Stock</md-button>
                     </div>
                 </div>
