@@ -19,7 +19,7 @@ module.exports = function($scope, $mdDialog, ApiService, item) {
 
     self.item = item;
 
-    if (!angular.isUndefined(self.item.available)) {
+    if (!angular.isUndefined(self.item) && self.item != null) {
         console.log(self.item.available);
         self.item.available = new Date(self.item.available);
     }
