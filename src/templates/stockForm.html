@@ -2,7 +2,7 @@
     <form id="stockForm" name="stockForm" ng-cloak>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Stock Details</h2>
+                <h2>Stock Details: {[form.item.id]}</h2>
                     <span flex></span>
                 <md-button class="md-icon-button" ng-click="form.cancel()">
                     <span aria-label="Close dialog">x</span>
@@ -18,7 +18,7 @@
                 </md-input-container>
                 <md-input-container flex class="md-accent">
                     <label>Description</label>
-                    <textarea ng-model="form.item.description" rows="3" required></textarea>
+                    <textarea ng-model="form.item.description" rows="2" required></textarea>
                 </md-input-container>
                 <md-input-container flex class="md-accent">
                     <label>Price (£)</label>
